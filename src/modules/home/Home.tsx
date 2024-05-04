@@ -1,17 +1,14 @@
-import React, {useCallback, useMemo, useRef} from 'react';
-import {Text} from 'react-native';
+import React, {useRef} from 'react';
 import {Calendar} from 'react-native-calendars';
-import BottomSheet, {BottomSheetView} from '@gorhom/bottom-sheet';
-import {Button} from 'react-native-paper';
+import {Button, Text} from 'react-native-paper';
+import BottomSheet from '../../shared/components/BottomSheet';
+import {BottomSheetMethods} from '@gorhom/bottom-sheet/lib/typescript/types';
 
-export default function Home() {
-  const bottomSheetRef = useRef<BottomSheet>(null);
-  const snapPoints = useMemo(() => ['1%', '30%'], []);
+export default function () {
+  const bottomSheetRef = useRef<BottomSheetMethods>(null);
 
   // callbacks
-  const handleSheetChanges = useCallback((index: number) => {
-    console.log('handleSheetChanges', index);
-  }, []);
+
   return (
     <>
       <Calendar
@@ -21,13 +18,9 @@ export default function Home() {
       <Button mode="contained" onPress={() => bottomSheetRef.current?.expand()}>
         Press me
       </Button>
-      <BottomSheet
-        ref={bottomSheetRef}
-        onChange={handleSheetChanges}
-        snapPoints={snapPoints}>
-        <BottomSheetView>
-          <Text>Awesome 🎉</Text>
-        </BottomSheetView>
+
+      <BottomSheet bottomSheetRef={bottomSheetRef}>
+        <Text>hola</Text>
       </BottomSheet>
     </>
   );
